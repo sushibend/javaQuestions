@@ -9,8 +9,8 @@ public class Main {
         //1.6
        // System.out.println(compression("a"));
         // 1.7
-        int[][] mat = {{1,2,3,4}, {5,6,7,8}, {9, 10,11,12},{13,14,15,16}};
-        rotation(mat);
+//        int[][] mat = {{1,2,3,4}, {5,6,7,8}, {9, 10,11,12},{13,14,15,16}};
+//        rotation(mat);
 
     }
 
@@ -102,23 +102,25 @@ public class Main {
         int length = mat.length;
         //layers
 
+
         for (int i = 0; i < length / 2; i++) {
-            for (int j = i; j < length-1; j++) {
+            // swaps in this layer = length - 1 - i -i
+            for (int j = i; j < length-1 - i; j++) {
                 // starting point for swapping
                 int temp = mat[i][j];
-                int dist = length-1-j;
+                int dist = length-1;
                 // actual swapping takes place
                 //left to top
                 mat[i][j] = mat[dist-j][i];
 
                 //bottom to left
-                mat[dist-j][i] = mat[dist][dist - j];
+                mat[dist-j][i] = mat[dist-i][dist - j];
 
                 //right to bottom
-                mat[dist][dist - j] = mat[j][dist];
+                mat[dist-i][dist - j] = mat[j][dist-i];
 
                 //top to right
-                mat[j][dist] = temp;
+                mat[j][dist-i] = temp;
                 printMat(mat);
             }
         }
