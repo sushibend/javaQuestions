@@ -11,6 +11,11 @@ public class Main {
         // 1.7
 //        int[][] mat = {{1,2,3,4}, {5,6,7,8}, {9, 10,11,12},{13,14,15,16}};
 //        rotation(mat);
+//        //1.8
+//        int[][] mat = {{1,2,3,4}, {5,6,0,8}, {9, 10,11,12},{13,14,15,16}};
+//        printMat(mat);
+//        zeroMat(mat);
+//        printMat(mat);
 
     }
 
@@ -138,5 +143,44 @@ public class Main {
         }
         System.out.println();
         System.out.println();
+    }
+
+    public static void zeroMat(int[][] mat) {
+        //initialize all to false
+        boolean[] rows = new boolean[mat.length];
+        boolean[] cols = new boolean[mat[0].length];
+        // spot all zeroes
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[0].length; j++) {
+                if (mat[i][j] == 0) {
+                    rows[i] = true;
+                    cols[j] = true;
+                }
+            }
+        }
+
+        //null rows and cols
+        for (int i = 0; i < mat.length; i++) {
+            if (rows[i] == true) {
+                nullRows(mat, i);
+            }
+        }
+        for (int i = 0; i < mat.length; i++) {
+            if (cols[i] == true) {
+                nullCols(mat, i);
+            }
+        }
+    }
+
+    private static void nullRows(int[][] mat, int i) {
+        for (int j = 0; j < mat[0].length; j++) {
+            mat[i][j] = 0;
+        }
+    }
+
+    private static void nullCols(int[][] mat, int j) {
+        for (int i = 0; i < mat.length; i++) {
+            mat[i][j] = 0;
+        }
     }
 }
